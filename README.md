@@ -7,13 +7,16 @@ To repro:
 
 2. Install the python-rewrite branch of Nix in a profile
 
+```
    $ nix profile install github:cachix/devenv/python-rewrite
-
+```
 3. Check this repository out and cd'ed within it do
 
+```
    $ devenv shell
    $ devenv container shell --docker-run
-   
+```
+
 The result will be something like:
 
 ```
