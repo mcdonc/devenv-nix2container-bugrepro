@@ -14,6 +14,17 @@
     hello
   '';
 
+  services.postgres = {
+    enable = true;
+    package = pkgs.postgresql_16;
+    initialDatabases = [ { name = "climo"; } ];
+    initialScript = ''
+      CREATE USER climo WITH PASSWORD 'climo';
+      ALTER DATABASE climo OWNER TO climo;
+    '';
+    initdbArgs = [ "--locale=en_US.utf8" "--encoding=UTF8" ];
+  };
+
   devcontainer = {
     enable = true;
     settings = {
