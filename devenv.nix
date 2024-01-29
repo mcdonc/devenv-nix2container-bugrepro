@@ -5,15 +5,29 @@
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git ];
+  packages = [ ];
 
   # https://devenv.sh/scripts/
   scripts.hello.exec = "echo hello from $GREET";
 
   enterShell = ''
     hello
-    git --version
   '';
+
+  devcontainer = {
+    enable = true;
+    settings = {
+      updateContentCommand =
+        "cachix use devenv;cachix use apex;cachix use nixpkgs-python;devenv ci";
+      image = "ghcr.io/mcdonc/devenv:nonroot-containers";
+      customizations.vscode.extensions = [
+        "ms-python.python"
+        "ms-python.vscode-pylance"
+        "visualstudioexptteam.vscodeintellicode"
+        "jnoortheen.nix-ide"
+      ];
+    };
+  };
 
   # https://devenv.sh/languages/
   # languages.nix.enable = true;
