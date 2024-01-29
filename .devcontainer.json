@@ -1,0 +1,15 @@
+{
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "visualstudioexptteam.vscodeintellicode",
+        "jnoortheen.nix-ide"
+      ]
+    }
+  },
+  "image": "ghcr.io/mcdonc/devenv:nonroot-containers",
+  "overrideCommand": false,
+  "updateContentCommand": "cachix use devenv;cachix use apex;cachix use nixpkgs-python;devenv ci"
+}
